@@ -117,7 +117,9 @@ static const NSData * CRLFCRLFData;
     if ( self.willDisconnect ) {
         return;
     }
-
+    if(data.length > 0){
+        [self.currentRequest setBodyData:data];
+    }
     NSString * contentType = self.currentRequest.env[@"HTTP_CONTENT_TYPE"];
     if ([contentType hasPrefix:CRRequestTypeURLEncoded]) {
         // URL-encoded requests are parsed after we have all the data
